@@ -3,20 +3,20 @@
 //const int nullptr = 0; // In the future this should be known to compiler
 
 template <class T>
-class node
+struct node
 {
-  public:
-    T item;     // Item in list
-    node* next; // Pointer to next node
-    node() = delete; // No one can use w/o compiler error
-    node(T item){this->item = item;this->next = nullptr;}
-    ~node(){std::cout << "Node destructor called" << std::endl;}
+  T item;     // Item in list
+  node* next; // Pointer to next node
+  
+  // Constructor takes args 
+  node(T item){this->item = item;this->next = nullptr;}
+  node(T item,node<T>* next){this->item = item;this->next = next;}
+  node() = delete; // No one can use w/o compiler error
 }; 
 
 template <class T>
 class list
 {
-
   node<T>* head; // private by default
 
   public:
@@ -30,8 +30,6 @@ class list
       node<T>* cursor = head; // Start off pointing @ head
       node<T>* next_cursor; // Next cursor
      
-      std::cout << "Destructor called" << std::endl;
-
       if(cursor == nullptr) // If the list is empty, return
       {
         return;
@@ -39,15 +37,14 @@ class list
       else {
         while(cursor!=nullptr)
         {
-          std::cout << "Deleting node" << std::endl;
-          next_cursor = cursor->next;
+          next_cursor = cursor->next; // Save next pointer before deleting the node
           delete cursor;
           cursor = next_cursor;
         }
       }
     }
 
-    // Insert element at the end of the list
+    // Append element at the end of the list
     void append(T item)
     {
       node<T>* cursor = head; // Start off pointing @ head
@@ -67,7 +64,14 @@ class list
       }
       return;
     }
-    
+   
+    // Insert element at the head of list
+    void insert(T item)
+    {
+      head = new node<T>(item,head);
+      return;
+    }  
+
     // Print the list
     void print()
     {
@@ -92,13 +96,13 @@ class list
 int main ()
 {
 
-  int val;  // Variable to hold data
-
   list <int> mylist;
 
-  mylist.append(10);
-  mylist.append(20);
-  mylist.append(30);
+  mylist.insert(1);
+  mylist.insert(10);
+  mylist.insert(20);
+  mylist.insert(30);
+  mylist.append(0);
 
   mylist.print();
 
