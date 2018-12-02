@@ -27,4 +27,14 @@ Takes O(n) time (Linear time)
 
 Very fast insertion and deletion
 
+# Complexity
+
+Access = O(n)
+
+Search = O(n)
+
+Insertion = O(1)
+
+Deletion = O(1)
+
 
