@@ -1,12 +1,13 @@
 # Tree (Binary Search Tree)
 
 Fundamental data structure 
-
+```
        8
       / \
      3    10
     / \   / \ 
    0   5 6   19
+```
 
 Data organized in a tree with a root at the top, and left / right children.
 
