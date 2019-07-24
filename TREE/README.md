@@ -34,10 +34,11 @@ Very fast insertion and deletion
 
 Access = O(n)
 
+# in the balanced case it is O(log(n)) else it is O(n)
 Search = O(n)
 
-Insertion = O(1)
+Insertion = O(n)
 
-Deletion = O(1)
+Deletion = O(n)
 
 
